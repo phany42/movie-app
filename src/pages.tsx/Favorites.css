@@ -1,0 +1,35 @@
+.favorites-page {
+  padding: 2rem;
+}
+
+.favorites-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.favorite-card {
+  background-color: #ff0000;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favorite-card h3 {
+  margin: 0;
+}
+
+.favorite-card button {
+  background-color: #080000;
+  border: none;
+  color: rgb(219, 10, 10);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.favorite-card button:hover {
+  background-color: #0e8ce0;
+}

@@ -1,22 +1,25 @@
+import { useMovieContext } from "../context.tsx/MovieContext";
+import './MovieCard.css';
 
-import React from 'react';
-
-interface MovieProps {
-  movie: {
-    id: number;
-    title: string;
-    description: string;
-    year: number;
-  };
+interface Props {
+  id: number;
+  title: string;
+  description: string;
+  year: number;
 }
 
-const MovieCard: React.FC<MovieProps> = ({ movie }) => {
+export const MovieCard: React.FC<Props> = ({ id, title, description, year }) => {
+  const { addToFavorites } = useMovieContext();
+
   return (
-    <div className="card">
-      <h2>{movie.title} ({movie.year})</h2>
-      <p>{movie.description}</p>
+    <div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <p>{year}</p>
+      <button onClick={() => addToFavorites({ id, title, description, year })}>
+        Add to Favorites
+      </button>
     </div>
   );
 };
 
-export default MovieCard;

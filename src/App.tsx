@@ -1,23 +1,23 @@
-import React from 'react';
-import MovieCard from './components/MovieCard';
-import MovieList from './components/MovieList';
-
-const sampleMovie = {
-  id: 1,
-  title: "Inception",
-  description: "A mind-bending thriller by Christopher Nolan.",
-  year: 2010,
-};
-
-const App: React.FC = () => {
-  return (
-    <div>
-      <h1>🎬 Movie App</h1>
-      <MovieCard movie={sampleMovie} />
-      <MovieList />
-    </div>
-  );
-};
-
 export default App;
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages.tsx/Home";
+import { Favorites } from  "./pages.tsx/Favorites";
+import Navbar from "./components/Navbar";
+import { MovieProvider } from "./context.tsx/MovieContext";
+
+function App() {
+  return (
+    <MovieProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </Router>
+    </MovieProvider>
+  );
+}
+
 
