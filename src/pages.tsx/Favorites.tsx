@@ -1,21 +1,29 @@
-import { useMovieContext } from "../context.tsx/MovieContext"; 
-    
-import './Favorites.css';
+
+import { useMovieContext } from "../context.tsx/MovieContext";
+import { MovieCard } from "../components/MovieCard";
 
 export const Favorites = () => {
+  const { favorites } = useMovieContext();
 
-  const { favorites, removeFromFavorites } = useMovieContext();
+  return (
+    <div>
+      <h2 style={{ textAlign: "center", color: "#fff", marginTop: "20px" }}>
+        Favorites
+      </h2>
 
-
-  return (<div className="favorites-page">
-  <h2>Favorites</h2>
-  {favorites.map((movie) => (
-    <div className="favorite-card" key={movie.id}>
-      <h3>{movie.title}</h3>
-      <button onClick={() => removeFromFavorites(movie.id)}>Remove</button>
+      {favorites.length > 0 ? (
+        <div className="movie-list">
+          {favorites.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      ) : (
+        <p style={{ textAlign: "center", color: "#aaa" }}>
+          No favorites added yet.
+        </p>
+      )}
     </div>
-  ))}
-</div>
-   
   );
-}
+};
+
+export default Favorites;

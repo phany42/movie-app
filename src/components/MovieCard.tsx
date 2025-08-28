@@ -1,25 +1,30 @@
+
 import { useMovieContext } from "../context.tsx/MovieContext";
-import './MovieCard.css';
+import type { MovieType } from "../data/movies";
 
-interface Props {
-  id: number;
-  title: string;
-  description: string;
-  year: number;
-}
+type Props = {
+  movie: MovieType;
+};
 
-export const MovieCard: React.FC<Props> = ({ id, title, description, year }) => {
-  const { addToFavorites } = useMovieContext();
+export const MovieCard: React.FC<Props> = ({ movie }) => {
+  const { favorites, addToFavorites, removeFromFavorites } = useMovieContext();
+
+  const isFavorite = favorites.some((fav) => fav.id === movie.id);
 
   return (
-    <div>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <p>{year}</p>
-      <button onClick={() => addToFavorites({ id, title, description, year })}>
-        Add to Favorites
+    <div className="movie-card">
+      <h3>{movie.title}</h3>
+      <p>{movie.description}</p>
+      <p>{movie.year}</p>
+      <button
+        onClick={() =>
+          isFavorite ? removeFromFavorites(movie.id) : addToFavorites(movie)
+        }
+      >
+        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
       </button>
     </div>
   );
 };
 
+export default MovieCard;
